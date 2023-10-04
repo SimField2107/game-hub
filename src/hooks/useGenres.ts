@@ -5,6 +5,8 @@ import genres from '../data/genres' ;
 import APIClient from '../services/API-Client';
 import { FetchResponse } from '../services/API-Client';
 
+const apiClient = new APIClient<Genre>('/genres')
+
 export interface Genre { 
     id: number; 
     name: string; 
@@ -15,10 +17,7 @@ export interface Genre {
 const useGenres = () =>
  useQuery({ 
     queryKey: ['genres'], 
-    queryFn: () => 
-    APIClient
-    .get<FetchResponse<Genre>>('/genres')
-    .then((res) => res.data), 
+    queryFn: apiClient.getAll, 
     staleTime: 24 * 60 * 60 * 1000, // 24h
     initialData: { count: genres.length, results: genres}
 
