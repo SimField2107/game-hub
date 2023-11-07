@@ -6,8 +6,6 @@ import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
 
-
-
 const GameGrid = () => {
   const {
     data,
@@ -21,8 +19,7 @@ const GameGrid = () => {
 
   if (error) return <Text> {error.message} </Text>;
 
-  // This is how we compute the total number of games
-  //fetched so far
+  // This is how we compute the total number of games fetched so far
 
   const fetchedGamesCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
